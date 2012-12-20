@@ -11,7 +11,9 @@ lib/Dancer/Plugin/Deferred.pm
 perlcritic.rc
 t/00-compile.t
 t/deferred.t
+t/keep.t
 t/views/index.tt
+t/views/link.tt
 xt/author/critic.t
 xt/author/pod-spell.t
 xt/release/distmeta.t

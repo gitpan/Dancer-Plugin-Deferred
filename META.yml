@@ -29,7 +29,7 @@ no_index:
 provides:
   Dancer::Plugin::Deferred:
     file: lib/Dancer/Plugin/Deferred.pm
-    version: 0.001
+    version: 0.002
 requires:
   Carp: 0
   Dancer: 0
@@ -43,4 +43,4 @@ resources:
   bugtracker: https://github.com/dagolden/dancer-plugin-deferred/issues
   homepage: https://metacpan.org/release/Dancer-Plugin-Deferred
   repository: git://github.com/dagolden/dancer-plugin-deferred.git
-version: 0.001
+version: 0.002

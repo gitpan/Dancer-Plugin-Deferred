@@ -2,7 +2,7 @@ NAME
     Dancer::Plugin::Deferred - Defer messages or data across redirections
 
 VERSION
-    version 0.001
+    version 0.002
 
 SYNOPSIS
       use Dancer::Plugin::Deferred;
@@ -38,18 +38,10 @@ DESCRIPTION
     deletes it from the session. Alternatively, the data can be retrieved
     manually (which will also automatically delete the data.)
 
-CONFIGURATION
-    *   "var_key: dpdid" -- this is the key in the "var" hash containing the
-        message ID
-
-    *   "params_key: dpdid" -- this is the key in the "params" hash
-        containing the message ID
-
-    *   "session_key_prefix": dpd_> -- the message ID is appended to this
-        prefix and used to store deferred data in the session
-
-    *   "template_key: deferred" -- this is the key to deferred data passed
-        to the template
+    Alternatively, the message ID parameters can be retrieved and used to
+    construct a hyperlink for a message to be retrieved later. In this case,
+    the message is preserved past the template hook. (The template should be
+    sure not to render the message if not desired.)
 
 USAGE
   deferred
@@ -68,6 +60,30 @@ USAGE
     deletes the stored data. This is called automatically in the
     "before_template_render" hook, but is available if someone wants to have
     manual control.
+
+  deferred_param
+      template 'index' => { link => uri_for( '/other', { deferred_param } ) };
+
+    This function returns the parameter key and value used to propagate the
+    message to another request. Using this function toggles the
+    "var_keep_key" variable to true to ensure the message remains to be
+    retrieved by the link.
+
+CONFIGURATION
+    *   "var_key: dpdid" -- this is the key in the "var" hash containing the
+        message ID
+
+    *   "var_keep_key: dpd_keep" -- if this key in "var" is true, retrieving
+        values will not be destructive
+
+    *   "params_key: dpdid" -- this is the key in the "params" hash
+        containing the message ID
+
+    *   "session_key_prefix": dpd_> -- the message ID is appended to this
+        prefix and used to store deferred data in the session
+
+    *   "template_key: deferred" -- this is the key to deferred data passed
+        to the template
 
 SEE ALSO
     *   Dancer
